@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup Page</title>
+	<style>
+		body {
+			font-family:Georgia, 'Times New Roman', Times, serif;
+			background-image: url('https://wallpapers.com/images/featured/bwvid0licus1pjda.jpg');
+		}
+		form {
+			background-color: rgb(86, 84, 84);
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 30px;
+			box-shadow: 0 0 20px #f4eeee;
+			border-radius: 20px;
+		}
+		h1 {
+			text-align: center;
+			color: #070707;
+			text-shadow: 2px 2px 1px white, -2px -2px 1px black;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+			color: #080808;
+			text-shadow: 1px 1px 1px white;
+		}
+		input[type="text"],
+		input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 15px;
+			border: none;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #45a049;
+		}
+		.error {
+			color: rgb(233, 226, 226);
+			margin-bottom: 15px;
+		}
+	</style>
+</head>
+<body>
+	<form method="POST" action="">
+		<h1>Welcome to the Signup Page!</h1>
+		<label for="username"><b>Username:</b></label>
+		<input type="text" id="username" name="username" required>
+
+		<label for="password"><b>Password:</b></label>
+		<input type="password" id="password" name="password" required minlength="6">
+
+		<label for="confirm_password"><b>Confirm Password:</b></label>
+		<input type="password" id="confirm_password" name="confirm_password" required>
+
+		<input type="submit" value="SUBMIT">
+
+		<div id="error_message"></div>
+	</form>
+
+	<script>
+		const form = document.querySelector('form');
+		const error_message = document.getElementById('error_message');
+		const password = document.getElementById('password');
+		const confirm_password = document.getElementById('confirm_password');
+
+		form.addEventListener('submit', (e) => {
+			let messages = [];
+
+			if (password.value.length < 8) {
+				messages.push('Password should be at least 8 characters long');
+			}
+
+			if (password.value !== confirm_password.value) {
+				messages.push('Passwords do not match');
+			}
+
+			if (messages.length > 0) {
+				e.preventDefault();
+				error_message.innerHTML = messages.join('<br>');
+
+			}
+		});
+	</script>
+</body>
+</html>
